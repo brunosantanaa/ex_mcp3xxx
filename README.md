@@ -1,6 +1,6 @@
-# ExMcp3xxx
+# ExMCP3xxx
 
-Library to use MCP family A / D converters microchip with Nerves.
+Library to use Microchip MCP family A/D converters with Nerves-Project.
 
 ## Example
 

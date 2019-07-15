@@ -15,6 +15,7 @@ defmodule ExMCP3xxx do
   def init(config) do
     port = Keyword.get(config, :spi, @spi_port)
     family = Keyword.get(config, :family, @std_family)
+    
     n_bits_family = Kernel.trunc(family/100)
     n_ch = rem(family, n_bits_family)
 
@@ -23,7 +24,7 @@ defmodule ExMCP3xxx do
     state = %{spi: spi, callback: config[:callback], bits: n_bits_family - 20, n_channels: n_ch}
     {:ok, state}
   end
-  def read(channel), do: GenServer.call(__MODULE__, {:read, channel})
+  def read(channel) when (channel >= 0 and channel <= 7), do: GenServer.call(__MODULE__, {:read, channel})
   def handle_call({:read, ch}, _from, state) do
     #TODO
     bits = state.bits
